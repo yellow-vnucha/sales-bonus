@@ -94,7 +94,6 @@ function analyzeSalesData(data, options) {
     {}
   ); // Ключом будет id, значением — запись из sellerStats
 
-
   const productIndex = data.products.reduce(
     (result, product) => ({
       ...result,
@@ -153,9 +152,10 @@ function analyzeSalesData(data, options) {
 
     // Считаем бонус
     const topProductsArray = Object.entries(seller.products_sold); // Формируем топ-10 товаров
-    const topProductsArrayObjects = topProductsArray.map(([sku, quantity]) => [
-      { sku, quantity },
-    ]);
+    const topProductsArrayObjects = topProductsArray.map(([sku, quantity]) => ({
+      sku,
+      quantity,
+    }));
 
     topProductsArrayObjects.sort((a, b) => {
       if (a.quantity > b.quantity) {
